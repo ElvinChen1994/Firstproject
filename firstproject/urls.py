@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.http import HttpResponse
+from book.views import book
+from movie.views import movie
+
+def index(request):
+    return  HttpResponse("首页")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',index),
+    path('book/',book),
+    path('movie/',movie)
 ]
