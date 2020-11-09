@@ -14,10 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from django.http import HttpResponse
-from book.views import book
+from book.views import book,book_detail,art_detail,publicer_detail
 from movie.views import movie
+from django.urls import converters    #转换器
 
 def index(request):
     return  HttpResponse("首页")
@@ -25,6 +26,9 @@ def index(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',index),
-    path('book/',book),
+    path('book/',include('book.urls')),
+   # path('book/detail/<book_id>', book_detail),
     path('movie/',movie)
+    #path('book/details/',art_detail),
+    #path('book/publicer/<uuid:publicer_id>',publicer_detail)
 ]
